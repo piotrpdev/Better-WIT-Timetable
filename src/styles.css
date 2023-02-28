@@ -21,7 +21,6 @@ table td.room-and-time {
   position: relative;
   font-size: 1.5rem;
   font-weight: bold;
-  border-radius: 5px 0px 0px 5px;
   width: 80px;
 }
 
@@ -51,8 +50,14 @@ table td .lecturer {
   font-size: 0.9rem;
 }
 
-table td.icons {
-  border-radius: 0px 5px 5px 0px;
+@media screen and (min-width: 460px) {
+  .room-and-time {
+    border-radius: 5px 0px 0px 5px;
+  }
+
+  table td.icons {
+    border-radius: 0px 5px 5px 0px;
+  }
 }
 
 .entry.L {

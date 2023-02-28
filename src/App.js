@@ -16,7 +16,7 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1>WIT Timetable</h1>
+      <h1 className="mt-3 mb-4">WIT Timetable</h1>
       <DayList currentDay={day} setDay={setDay} />
       <SubjectList
         subjects={subjects}
@@ -24,13 +24,10 @@ export default function App() {
         setCheckedSubjects={setCheckedSubjects}
       />
       <DayEntries
-        dayTimetableData={
-          checkedSubjects.length
-            ? timetableData[day].filter((_entry) =>
-                checkedSubjects.includes(_entry["Subject Code and Title"])
-              )
-            : timetableData[day]
-        }
+        dayTimetableData={timetableData[day].filter(
+          (_entry) =>
+            !checkedSubjects.includes(_entry["Subject Code and Title"])
+        )}
       />
     </div>
   );
