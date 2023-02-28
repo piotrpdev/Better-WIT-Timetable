@@ -4,7 +4,7 @@ import Accordion from "react-bootstrap/Accordion";
 export default function SubjectList({
   subjects,
   checkedSubjects,
-  setCheckedSubjects
+  setCheckedSubjects,
 }) {
   const [open, setOpen] = useState(false);
 
@@ -21,31 +21,27 @@ export default function SubjectList({
   };
 
   return (
-    <div className="subjectListContainer">
-      <div>
-        <Accordion>
-          <Accordion.Item eventKey="0"></Accordion.Item>
-          <Accordion.Header>Show Modules</Accordion.Header>
-          <Accordion.Body>
-            <div className="subjectList">
-              {subjects.map((subject) => (
-                <div>
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value={`${subject}`}
-                    id={`${subject}`}
-                    onChange={handleCheckboxChange}
-                  />
-                  <label class="form-check-label" for={`${subject}`}>
-                    {subject.substring(subject.indexOf(" ") + 1)}
-                  </label>
-                </div>
-              ))}
+    <Accordion className="mt-3">
+      <Accordion.Item eventKey="0"></Accordion.Item>
+      <Accordion.Header>Hide Modules</Accordion.Header>
+      <Accordion.Body>
+        <div className="subjectList">
+          {subjects.map((subject) => (
+            <div>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value={`${subject}`}
+                id={`${subject}`}
+                onChange={handleCheckboxChange}
+              />
+              <label class="form-check-label" for={`${subject}`}>
+                {subject.substring(subject.indexOf(" ") + 1)}
+              </label>
             </div>
-          </Accordion.Body>
-        </Accordion>
-      </div>
-    </div>
+          ))}
+        </div>
+      </Accordion.Body>
+    </Accordion>
   );
 }
