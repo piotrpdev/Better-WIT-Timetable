@@ -38,7 +38,11 @@ export default function Entry(props) {
           <div className="time">{props.entry["Time"]}</div>
         </div>
       </td>
-      <td className="subject-and-lecturer">
+      <td
+        className={`subject-and-lecturer ${
+          settings["Show Type and Location"] ? "" : "alone"
+        }`}
+      >
         <div className="subject">{title}</div>
         <div className="lecturer">{lecturer}</div>
       </td>

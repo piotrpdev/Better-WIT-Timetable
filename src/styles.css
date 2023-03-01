@@ -1,5 +1,4 @@
 body {
-  background-color: antiquewhite;
   font-family: "Roboto", sans-serif;
 }
 
@@ -74,22 +73,32 @@ table td .lecturer {
   table td.icons {
     border-radius: 0px 5px 5px 0px;
   }
+
+  .alone {
+    border-radius: 0px 5px 5px 0px;
+  }
 }
 
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/named-color#css_level_3_values */
+
 .entry.L {
-  background-color: lightblue;
+  /* background-color: lightblue; */
+  background-color: rgba(173, 216, 230, 0.5);
 }
 
 .entry.P {
-  background-color: orange;
+  /* background-color: orange; */
+  background-color: rgba(255, 165, 0, 0.5);
 }
 
 .entry.T {
-  background-color: deeppink;
+  /* background-color: deeppink; */
+  background-color: rgba(255, 20, 147, 0.5);
 }
 
 .entry.RP {
-  background-color: red;
+  /* background-color: red; */
+  background-color: rgba(255, 0, 0, 0.5);
 }
 
 .entry .subject {

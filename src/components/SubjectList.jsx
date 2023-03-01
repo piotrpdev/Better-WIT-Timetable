@@ -23,20 +23,21 @@ export default function SubjectList({
 
   return (
     <Accordion className="mt-3 px-3">
-      <Accordion.Item eventKey="0"></Accordion.Item>
-      <Accordion.Header>Hide Modules</Accordion.Header>
-      <Accordion.Body>
-        <div className="subjectList">
-          {subjects.map((subject) => (
-            <Checkbox
-              value={`${subject}`}
-              checked={checkedSubjects.includes(subject)}
-              onChange={handleCheckboxChange}
-              label={subject.substring(subject.indexOf(" ") + 1)}
-            />
-          ))}
-        </div>
-      </Accordion.Body>
+      <Accordion.Item eventKey="0">
+        <Accordion.Header>Hide Modules</Accordion.Header>
+        <Accordion.Body>
+          <div className="subjectList">
+            {subjects.map((subject) => (
+              <Checkbox
+                value={`${subject}`}
+                checked={checkedSubjects.includes(subject)}
+                onChange={handleCheckboxChange}
+                label={subject.substring(subject.indexOf(" ") + 1)}
+              />
+            ))}
+          </div>
+        </Accordion.Body>
+      </Accordion.Item>
     </Accordion>
   );
 }
