@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import { SettingsContext } from "../contexts/SettingsContext";
+
 import BookSVG from "./icons/BookSVG";
 import FlaskSVG from "./icons/FlaskSVG";
 import MGlassSVG from "./icons/MGlassSVG";
@@ -6,10 +9,12 @@ const svgMap = {
   P: FlaskSVG,
   L: BookSVG,
   T: MGlassSVG,
-  default: FlaskSVG
+  default: FlaskSVG,
 };
 
 export default function Entry(props) {
+  const { settings } = useContext(SettingsContext);
+
   const subjectCodeAndTitle = props.entry["Subject Code and Title"];
   const subjectCode = subjectCodeAndTitle.substring(
     0,
@@ -37,12 +42,14 @@ export default function Entry(props) {
         <div className="subject">{title}</div>
         <div className="lecturer">{lecturer}</div>
       </td>
-      <td className="icons">
-        <div className="type">
-          <TypeSVG />
-        </div>
-        <div className="location">{typeAndLocation[1]}</div>
-      </td>
+      {settings["Show Type and Location"] && (
+        <td className="icons">
+          <div className="type">
+            <TypeSVG />
+          </div>
+          <div className="location">{typeAndLocation[1]}</div>
+        </td>
+      )}
     </tr>
   );
 }

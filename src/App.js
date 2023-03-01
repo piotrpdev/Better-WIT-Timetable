@@ -1,7 +1,10 @@
 import { useState } from "react";
 import DayEntries from "./components/DayEntries";
 import DayList from "./components/DayList";
+import SettingsBtn from "./components/SettingsBtn";
 import SubjectList from "./components/SubjectList";
+import useLocalStorageState from "use-local-storage-state";
+import { SettingsContext } from "./contexts/SettingsContext";
 import "./styles.css";
 
 // https://gist.github.com/piotrpdev/26a84b878b6de2ebbb4f78bbc1ae467c
@@ -10,25 +13,39 @@ import getSubjectsFromData from "./utils/getSubjectsFromData";
 const timetableData = JSON.parse(_timetableData);
 
 export default function App() {
+  const [settings, setSettings] = useLocalStorageState("settings", {
+    defaultValue: { "Show Type and Location": false },
+  });
+
   const [day, setDay] = useState("Monday");
   const [subjects] = useState(getSubjectsFromData(timetableData));
-  const [checkedSubjects, setCheckedSubjects] = useState([]);
+  const [checkedSubjects, setCheckedSubjects] = useLocalStorageState(
+    "hiddenModules",
+    {
+      defaultValue: [],
+    }
+  );
 
   return (
-    <div className="App">
-      <h1 className="mt-3 mb-4">WIT Timetable</h1>
-      <DayList currentDay={day} setDay={setDay} />
-      <SubjectList
-        subjects={subjects}
-        checkedSubjects={checkedSubjects}
-        setCheckedSubjects={setCheckedSubjects}
-      />
-      <DayEntries
-        dayTimetableData={timetableData[day].filter(
-          (_entry) =>
-            !checkedSubjects.includes(_entry["Subject Code and Title"])
-        )}
-      />
-    </div>
+    <SettingsContext.Provider value={{ settings, setSettings }}>
+      <div className="App">
+        <header>
+          <h1 className="py-2 mb-3">WIT Timetable</h1>
+          <SettingsBtn />
+        </header>
+        <DayList currentDay={day} setDay={setDay} />
+        <SubjectList
+          subjects={subjects}
+          checkedSubjects={checkedSubjects}
+          setCheckedSubjects={setCheckedSubjects}
+        />
+        <DayEntries
+          dayTimetableData={timetableData[day].filter(
+            (_entry) =>
+              !checkedSubjects.includes(_entry["Subject Code and Title"])
+          )}
+        />
+      </div>
+    </SettingsContext.Provider>
   );
 }
