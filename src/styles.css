@@ -7,6 +7,22 @@ body {
   text-align: center;
 }
 
+header {
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+}
+
+.settingsButton {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.modal-footer {
+  justify-content: center;
+}
+
 table {
   margin: 0 auto;
   border-collapse: separate;
@@ -102,7 +118,7 @@ table td .lecturer {
   gap: 5px;
 }
 
-.subjectList input {
+.checkbox input {
   margin-right: 10px;
 }
 
